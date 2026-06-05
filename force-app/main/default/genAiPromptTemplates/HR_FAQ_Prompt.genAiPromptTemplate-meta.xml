@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>GwUk76erFTMGekftxdPaPBk7Pzz68QQYeavhbBH9K5Y=_4</activeVersionIdentifier>
+    <description>This Template is used to answer employee questions by referring Knowledge records, Knowledge Related Files and HR FAQs</description>
+    <developerName>HR_FAQ_Prompt</developerName>
+    <masterLabel>HR FAQ Prompt</masterLabel>
+    <overridable>false</overridable>
+    <templateVersions>
+        <content>You are an HR support assistant.
+
+Only Answer using:
+- Salesforce Knowledge 
+- Uploaded Documents
+- HR FAQs
+
+If answer is not found:
+I could not find verified HR information.
+
+Do not make up policies.
+Keep response concise and professional.
+
+
+</content>
+        <fileDroppingStrategy>{&quot;dropFilesBy&quot;:&quot;LAST_MODIFIED_DATE&quot;,&quot;dropFileStartingWith&quot;:&quot;OLDEST&quot;}</fileDroppingStrategy>
+        <inputs>
+            <apiName>Knowledge</apiName>
+            <definition>SOBJECT://Knowledge__kav</definition>
+            <masterLabel>Knowledge__kav</masterLabel>
+            <referenceName>Input:Knowledge</referenceName>
+            <required>true</required>
+        </inputs>
+        <isCitationEnabled>false</isCitationEnabled>
+        <primaryModel>sfdc_ai__DefaultGPT5Mini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>GwUk76erFTMGekftxdPaPBk7Pzz68QQYeavhbBH9K5Y=_1</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are an HR support assistant.
+
+Only Answer using:
+- Salesforce Knowledge {!$RecordSnapshot:Knowledge.snapshot}
+- Uploaded Documents
+- HR FAQs {!$RecordSnapshot:HR_FAQ.snapshot}
+
+If answer is not found:
+I could not find verified HR information.
+
+Do not make up policies.
+Keep response concise and professional.
+
+
+</content>
+        <fileDroppingStrategy>{&quot;dropFilesBy&quot;:&quot;LAST_MODIFIED_DATE&quot;,&quot;dropFileStartingWith&quot;:&quot;OLDEST&quot;}</fileDroppingStrategy>
+        <inputs>
+            <apiName>Knowledge</apiName>
+            <definition>SOBJECT://Knowledge__kav</definition>
+            <masterLabel>Knowledge__kav</masterLabel>
+            <referenceName>Input:Knowledge</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>HR_FAQ</apiName>
+            <definition>SOBJECT://HR_FAQ__c</definition>
+            <masterLabel>HR_FAQ__c</masterLabel>
+            <referenceName>Input:HR_FAQ</referenceName>
+            <required>true</required>
+        </inputs>
+        <isCitationEnabled>false</isCitationEnabled>
+        <primaryModel>sfdc_ai__DefaultGPT5Mini</primaryModel>
+        <status>Draft</status>
+        <templateDataProviders>
+            <definition>invocable://getDataForGrounding</definition>
+            <description>Retrieves record data for grounding a prompt template.</description>
+            <label>Record Snapshot</label>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>recordId</parameterName>
+                <valueExpression>{!$Input:Knowledge.Id}</valueExpression>
+            </parameters>
+            <referenceName>RecordSnapshot:Knowledge</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getDataForGrounding</definition>
+            <description>Retrieves record data for grounding a prompt template.</description>
+            <label>Record Snapshot</label>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>recordId</parameterName>
+                <valueExpression>{!$Input:HR_FAQ.Id}</valueExpression>
+            </parameters>
+            <referenceName>RecordSnapshot:HR_FAQ</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>GwUk76erFTMGekftxdPaPBk7Pzz68QQYeavhbBH9K5Y=_2</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are an HR support assistant.
+
+Only Answer using:
+- Salesforce Knowledge {!$RecordSnapshot:Knowledge.snapshot}
+- Uploaded Documents
+- HR FAQs {!$RecordSnapshot:HR_FAQ.snapshot}
+
+If answer is not found:
+I could not find verified HR information.
+
+Do not make up policies.
+Keep response concise and professional.
+
+
+</content>
+        <fileDroppingStrategy>{&quot;dropFilesBy&quot;:&quot;LAST_MODIFIED_DATE&quot;,&quot;dropFileStartingWith&quot;:&quot;OLDEST&quot;}</fileDroppingStrategy>
+        <inputs>
+            <apiName>HR_FAQ</apiName>
+            <definition>SOBJECT://HR_FAQ__c</definition>
+            <masterLabel>HR_FAQ__c</masterLabel>
+            <referenceName>Input:HR_FAQ</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Knowledge</apiName>
+            <definition>SOBJECT://Knowledge__kav</definition>
+            <masterLabel>Knowledge__kav</masterLabel>
+            <referenceName>Input:Knowledge</referenceName>
+            <required>true</required>
+        </inputs>
+        <isCitationEnabled>false</isCitationEnabled>
+        <primaryModel>sfdc_ai__DefaultGPT5Mini</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getDataForGrounding</definition>
+            <description>Retrieves record data for grounding a prompt template.</description>
+            <label>Record Snapshot</label>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>recordId</parameterName>
+                <valueExpression>{!$Input:Knowledge.Id}</valueExpression>
+            </parameters>
+            <referenceName>RecordSnapshot:Knowledge</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getDataForGrounding</definition>
+            <description>Retrieves record data for grounding a prompt template.</description>
+            <label>Record Snapshot</label>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>recordId</parameterName>
+                <valueExpression>{!$Input:HR_FAQ.Id}</valueExpression>
+            </parameters>
+            <referenceName>RecordSnapshot:HR_FAQ</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>GwUk76erFTMGekftxdPaPBk7Pzz68QQYeavhbBH9K5Y=_3</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are an HR support assistant.
+
+Only Answer using:
+- Salesforce Knowledge 
+- Uploaded Documents
+- HR FAQs 
+
+If answer is not found:
+I could not find verified HR information.
+
+Do not make up policies.
+Keep response concise and professional.
+
+
+</content>
+        <fileDroppingStrategy>{&quot;dropFilesBy&quot;:&quot;LAST_MODIFIED_DATE&quot;,&quot;dropFileStartingWith&quot;:&quot;OLDEST&quot;}</fileDroppingStrategy>
+        <inputs>
+            <apiName>Knowledge</apiName>
+            <definition>SOBJECT://Knowledge__kav</definition>
+            <masterLabel>Knowledge__kav</masterLabel>
+            <referenceName>Input:Knowledge</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>HR_FAQ</apiName>
+            <definition>SOBJECT://HR_FAQ__c</definition>
+            <masterLabel>HR_FAQ__c</masterLabel>
+            <referenceName>Input:HR_FAQ</referenceName>
+            <required>true</required>
+        </inputs>
+        <isCitationEnabled>false</isCitationEnabled>
+        <primaryModel>sfdc_ai__DefaultGPT5Mini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>GwUk76erFTMGekftxdPaPBk7Pzz68QQYeavhbBH9K5Y=_4</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

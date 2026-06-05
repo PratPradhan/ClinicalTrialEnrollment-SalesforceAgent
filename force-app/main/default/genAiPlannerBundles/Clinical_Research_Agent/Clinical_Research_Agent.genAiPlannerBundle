@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <description>Deliver personalized customer interactions with an autonomous AI agent. Helps patients to answer various Queries as well as help in showing Clinical Trial Recommendations and help in Enrollments.</description>
+    <localActionLinks>
+        <genAiFunctionName>AnswerQuestionsWithKnowledge_16jgK000001QUTJ</genAiFunctionName>
+    </localActionLinks>
+    <localTopicLinks>
+        <genAiPluginName>Clinical_Trial_Enrollment_16jgK000001QUTJ</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>Clinical_Trials_Assistance_16jgK000001QUTJ</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>GeneralFAQ_16jgK000001QUTJ</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>Clinical_Trials_Assistance_16jgK000001QUTJ</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Assist users in locating and providing information about clinical trials based on their specific medical conditions or criteria.</description>
+        <developerName>Clinical_Trials_Assistance_16jgK000001QUTJ</developerName>
+        <genAiPluginInstructions>
+            <description>Invoke this action &quot;Recommended_Clinical_Trial_179gK000001W9PN&quot; passing the user query to get the recommended trial. Show the final Clinical Trial in a nice way on UI with details in a presentable manner</description>
+            <developerName>instructions_0_1779412463936</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1779412463936</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If user asked to show Recommended Clinical Trial then show this action &quot;Clinical_Trial_Query_Response_179gK000001W9PN&quot; passing &quot;Current_Patient__c&quot; session context variable as personAccountId input to get the final Query which you need to send to the &quot;Recommended_Clinical_Trial_179gK000001W9PN&quot; action.</description>
+            <developerName>instruction_1</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 1</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Recommended_Clinical_Trial_179gK000001W9PN</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Clinical_Trial_Query_Response_179gK000001W9PN</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Recommended_Clinical_Trial_179gK000001W9PN</fullName>
+            <description>This action finds relevant clinical trial for the given criteria. user passes the criteria for age, gender, medical condition etc and this action finds all the relevant clinical Trials</description>
+            <developerName>Recommended_Clinical_Trial_179gK000001W9PN</developerName>
+            <invocationTarget>Recommended_Clinical_Trial</invocationTarget>
+            <invocationTargetType>generatePromptResponse</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Recommended_Clinical_Trial</localDeveloperName>
+            <masterLabel>Recommended Clinical Trial</masterLabel>
+            <progressIndicatorMessage>Finding Clinical Trials</progressIndicatorMessage>
+        </localActions>
+        <localActions>
+            <fullName>Clinical_Trial_Query_Response_179gK000001W9PN</fullName>
+            <description>AI Generated flow for a auto launched flow with name Clinical Trial Query....</description>
+            <developerName>Clinical_Trial_Query_Response_179gK000001W9PN</developerName>
+            <invocationTarget>Clinical_Trial_Query_Response</invocationTarget>
+            <invocationTargetType>flow</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Clinical_Trial_Query_Response</localDeveloperName>
+            <masterLabel>Clinical Trial Query Response</masterLabel>
+            <progressIndicatorMessage>Generating Query...</progressIndicatorMessage>
+        </localActions>
+        <localDeveloperName>Clinical_Trials_Assistance</localDeveloperName>
+        <masterLabel>Clinical Trials Assistance</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>Your job is only to help users find relevant clinical trials by gathering information about their medical conditions, preferences or criteria and providing accurate and relevant trial details. Do not provide medical advice or diagnoses or interpret clinical trial results.</scope>
+    </localTopics>
+    <localTopics>
+        <fullName>Clinical_Trial_Enrollment_16jgK000001QUTJ</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Assist user with process and information related to enrolling in clinical trial. Handles inquiries related to enrolling in clinical trials, including providing information about eligibility, available trials, and the enrollment process.</description>
+        <developerName>Clinical_Trial_Enrollment_16jgK000001QUTJ</developerName>
+        <genAiPluginInstructions>
+            <description>If the Participant expresses interest in enrolling in a clinical Trial then invoke this action &quot;Create_Patient_Enrollment_179gK000001YzFt&quot;. Pass the clinical Trial name given by user for which they want to enroll and also pass the session context variable &quot;Current_Patient__c&quot; as PatientId</description>
+            <developerName>instruction_1</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 1</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Create_Patient_Enrollment_179gK000001YzFt</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Create_Patient_Enrollment_179gK000001YzFt</fullName>
+            <description>Creates Enrollment record for the patient to the trial</description>
+            <developerName>Create_Patient_Enrollment_179gK000001YzFt</developerName>
+            <invocationTarget>Create_Patient_Enrollment</invocationTarget>
+            <invocationTargetType>flow</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Create_Patient_Enrollment</localDeveloperName>
+            <masterLabel>Create Patient Enrollment</masterLabel>
+            <progressIndicatorMessage>Creating Enrollment</progressIndicatorMessage>
+        </localActions>
+        <localDeveloperName>Clinical_Trial_Enrollment</localDeveloperName>
+        <masterLabel>Clinical Trial Enrollment</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>My job is only to assist users with enrolling in clinical trials. This includes answering questions about eligibility criteria, providing details about available trials, and guiding users through the enrollment process. I cannot provide medical advice or handle unrelated inquiries.</scope>
+    </localTopics>
+    <localTopics>
+        <fullName>GeneralFAQ_16jgK000001QUTJ</fullName>
+        <canEscalate>false</canEscalate>
+        <description>This topic is for helping answer customer&apos;s questions by searching through the knowledge articles and providing information from those articles. The questions can be about the company and its products, policies or business procedures</description>
+        <developerName>GeneralFAQ_16jgK000001QUTJ</developerName>
+        <genAiPluginInstructions>
+            <description>If the customer&apos;s question is too vague or general, ask for more details and clarification to give a better answer.</description>
+            <developerName>requestmoredetails</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>request-more-details</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If you are unable to help the customer even after asking clarifying questions, ask if they want to escalate this issue to a live agent.</description>
+            <developerName>unabletohelpafterclarifying</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>unable-to-help-after-clarifying</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If you are unable to answer customer&apos;s questions, ask if they want to escalate this issue to a live agent.</description>
+            <developerName>unabletoanswerquestions</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>unable-to-answer-questions</masterLabel>
+            <sortOrder>2</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Never provide generic information, advice or troubleshooting steps, unless retrieved from searching knowledge articles.</description>
+            <developerName>avoidgenericinformation</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>avoid-generic-information</masterLabel>
+            <sortOrder>3</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Include sources in your response when available from the knowledge articles, otherwise proceed without them.</description>
+            <developerName>includearticlesources</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>include-article-sources</masterLabel>
+            <sortOrder>4</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>AnswerQuestionsWithKnowledge_179gK000001bduf</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>AnswerQuestionsWithKnowledge_179gK000001bduf</fullName>
+            <description>Answers questions about company policies and procedures, troubleshooting steps, or product information. For example: “What is your return policy?” “How do I fix an issue?” or “What features does a product have?”</description>
+            <developerName>AnswerQuestionsWithKnowledge_179gK000001bduf</developerName>
+            <invocationTarget>streamKnowledgeSearch</invocationTarget>
+            <invocationTargetType>standardInvocableAction</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>AnswerQuestionsWithKnowledge</localDeveloperName>
+            <masterLabel>Answer Questions with Knowledge</masterLabel>
+            <progressIndicatorMessage>Getting answers</progressIndicatorMessage>
+            <source>EmployeeCopilot__AnswerQuestionsWithKnowledge</source>
+        </localActions>
+        <localDeveloperName>GeneralFAQ</localDeveloperName>
+        <masterLabel>General FAQ</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>Your job is solely to help with issues and answer questions about the company, its products, procedures, or policies by searching knowledge articles.</scope>
+        <source>SvcCopilotTmpl__GeneralFAQ</source>
+    </localTopics>
+    <masterLabel>Clinical Research Agent</masterLabel>
+    <plannerActions>
+        <fullName>AnswerQuestionsWithKnowledge_16jgK000001QUTJ</fullName>
+        <description>Answers questions about company policies and procedures, troubleshooting steps, or product information. For example: “What is your return policy?” “How do I fix an issue?” or “What features does a product have?”</description>
+        <developerName>AnswerQuestionsWithKnowledge_16jgK000001QUTJ</developerName>
+        <invocationTarget>streamKnowledgeSearch</invocationTarget>
+        <invocationTargetType>standardInvocableAction</invocationTargetType>
+        <isConfirmationRequired>false</isConfirmationRequired>
+        <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+        <localDeveloperName>AnswerQuestionsWithKnowledge</localDeveloperName>
+        <masterLabel>Answer Questions with Knowledge</masterLabel>
+        <progressIndicatorMessage>Getting answers</progressIndicatorMessage>
+        <source>EmployeeCopilot__AnswerQuestionsWithKnowledge</source>
+    </plannerActions>
+    <plannerSurfaces>
+        <adaptiveResponseAllowed>true</adaptiveResponseAllowed>
+        <callRecordingAllowed>false</callRecordingAllowed>
+        <surface>SurfaceAction__CustomerWebClient</surface>
+        <surfaceType>CustomerWebClient</surfaceType>
+    </plannerSurfaces>
+    <plannerSurfaces>
+        <adaptiveResponseAllowed>true</adaptiveResponseAllowed>
+        <callRecordingAllowed>false</callRecordingAllowed>
+        <surface>SurfaceAction__Messaging</surface>
+        <surfaceType>Messaging</surfaceType>
+    </plannerSurfaces>
+    <plannerType>AiCopilot__ReAct</plannerType>
+    <ruleExpressions>
+        <conditions>
+            <leftOperand>isVerified</leftOperand>
+            <leftOperandType>Variable</leftOperandType>
+            <operator>equal</operator>
+            <rightOperandValue>true</rightOperandValue>
+        </conditions>
+        <expression>Verified_User</expression>
+        <expressionLabel>Verified User</expressionLabel>
+        <expressionName>Verified_User</expressionName>
+        <expressionType>sel</expressionType>
+    </ruleExpressions>
+</GenAiPlannerBundle>

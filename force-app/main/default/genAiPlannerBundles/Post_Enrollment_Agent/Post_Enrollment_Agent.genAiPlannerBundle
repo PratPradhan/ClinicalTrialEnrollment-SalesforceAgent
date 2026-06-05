@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <description>Deliver personalized customer interactions with an autonomous AI agent. Performs all the backend activities for a Clinical Trial.</description>
+    <localActionLinks>
+        <genAiFunctionName>AnswerQuestionsWithKnowledge_16jgK000001VqPx</genAiFunctionName>
+    </localActionLinks>
+    <localTopicLinks>
+        <genAiPluginName>Clinical_Trial_Backend_Activities_16jgK000001VqPx</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>Clinical_Trial_Backend_Activities_16jgK000001VqPx</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Handles the backend activities related to Clinical Trials including data management and coordination Tasks.</description>
+        <developerName>Clinical_Trial_Backend_Activities_16jgK000001VqPx</developerName>
+        <genAiPluginInstructions>
+            <description>Upon receiving inputs from the user that includes Study Name and Participant ID. perform the following steps:
+
+1.1- Extract the Participant ID and Clinical Trial Name from the user query.
+
+Example- Perform all the activities for Participant 001gK000013k0THQAY enrolled in Clinical Trial Cognivia Trial. 
+Here 001gK000013k0THQAY is the Patient ID and Cognivia Trial is the Clinical Trial Name.
+
+1.2-Invoke the following action to retrieve all the activities to be performed for the Clinical Trial.
+
+Action: &quot;Clinical_Studies&quot; Pass the clinical Trial Name in the Query in the below format: &quot;Give me the list of Activities for this Trial &quot;CardioNova Study&quot; .
+This action return the list of all activities to be performed for the clinical Trial that is passed to it.</description>
+            <developerName>instructions_0_1780003678716</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1780003678716</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Once the list of required activity is received, evaluate the following actions accordingly:
+
+1-If the activity indicate that a Task Should be created then invoke the action &quot;Create_Task_for_Agent_179gK000001cDDN&quot; with the following parameters:
+ParticipantId (PaticipantId ID obtained from the Query), Subject(The subject mentioned in the Task), Due Date(in M/d/yyyy) format.
+Note: If user specifies relative time such as &quot;after 3 days&quot; or &quot;next Monday&quot; then dynamically calculate the actual Due Date by adding specified time to current date and format it in M/d/yyyy format.
+
+Detect any time sensitive input such as &quot;After 3 days&quot; or &quot;next Monday&quot; in user input and convert these phrase into specified due date in M/d/yyyy 
+format before passing it to the relevant action.
+
+If the Activity requires Slack message to be sent, invoke the Action &quot;Send_Slack_message_to_Clinical_Trial_179gK000001cDDN&quot; with parameter ParticipantId(mentioned in the user Query) and Message (mentioned in the Activity).</description>
+            <developerName>instruction_1</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 1</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Clinical_Trial_Activities_179gK000001cDDN</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Create_Task_for_Agent_179gK000001cDDN</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Send_Slack_message_to_Clinical_Trial_179gK000001cDDN</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Send_Slack_message_to_Clinical_Trial_179gK000001cDDN</fullName>
+            <description>Slack message to be sent from Agent</description>
+            <developerName>Send_Slack_message_to_Clinical_Trial_179gK000001cDDN</developerName>
+            <invocationTarget>clinicalTrialSlackHandler</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Send_Slack_message_to_Clinical_Trial</localDeveloperName>
+            <masterLabel>Send Slack message to Clinical Trial</masterLabel>
+            <progressIndicatorMessage>sending slack message...</progressIndicatorMessage>
+        </localActions>
+        <localActions>
+            <fullName>Create_Task_for_Agent_179gK000001cDDN</fullName>
+            <description>Create Task Record for Subject and Due Date passed by Agent</description>
+            <developerName>Create_Task_for_Agent_179gK000001cDDN</developerName>
+            <invocationTarget>Create_Task_for_Agent</invocationTarget>
+            <invocationTargetType>flow</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Create_Task_for_Agent</localDeveloperName>
+            <masterLabel>Create Task for Agent</masterLabel>
+            <progressIndicatorMessage>Creating a Task..</progressIndicatorMessage>
+        </localActions>
+        <localActions>
+            <fullName>Clinical_Trial_Activities_179gK000001cDDN</fullName>
+            <description>Gives the list of all activities for the Clinical Trials.</description>
+            <developerName>Clinical_Trial_Activities_179gK000001cDDN</developerName>
+            <invocationTarget>Clinical_Trial_Activities</invocationTarget>
+            <invocationTargetType>generatePromptResponse</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Clinical_Trial_Activities</localDeveloperName>
+            <masterLabel>Clinical Trial Activities</masterLabel>
+            <progressIndicatorMessage>Fetching List of Activities...</progressIndicatorMessage>
+        </localActions>
+        <localDeveloperName>Clinical_Trial_Backend_Activities</localDeveloperName>
+        <masterLabel>Clinical Trial Backend Activities</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>Your job is manage and coordinate backend activities for the clinical trials, ensuring data accuracy and task completion within the defined protocols.</scope>
+    </localTopics>
+    <masterLabel>Post Enrollment Agent</masterLabel>
+    <plannerActions>
+        <fullName>AnswerQuestionsWithKnowledge_16jgK000001VqPx</fullName>
+        <description>Answers questions about company policies and procedures, troubleshooting steps, or product information. For example: “What is your return policy?” “How do I fix an issue?” or “What features does a product have?”</description>
+        <developerName>AnswerQuestionsWithKnowledge_16jgK000001VqPx</developerName>
+        <invocationTarget>streamKnowledgeSearch</invocationTarget>
+        <invocationTargetType>standardInvocableAction</invocationTargetType>
+        <isConfirmationRequired>false</isConfirmationRequired>
+        <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+        <localDeveloperName>AnswerQuestionsWithKnowledge</localDeveloperName>
+        <masterLabel>Answer Questions with Knowledge</masterLabel>
+        <progressIndicatorMessage>Getting answers</progressIndicatorMessage>
+        <source>EmployeeCopilot__AnswerQuestionsWithKnowledge</source>
+    </plannerActions>
+    <plannerSurfaces>
+        <adaptiveResponseAllowed>true</adaptiveResponseAllowed>
+        <callRecordingAllowed>false</callRecordingAllowed>
+        <surface>SurfaceAction__Messaging</surface>
+        <surfaceType>Messaging</surfaceType>
+    </plannerSurfaces>
+    <plannerSurfaces>
+        <adaptiveResponseAllowed>true</adaptiveResponseAllowed>
+        <callRecordingAllowed>false</callRecordingAllowed>
+        <surface>SurfaceAction__CustomerWebClient</surface>
+        <surfaceType>CustomerWebClient</surfaceType>
+    </plannerSurfaces>
+    <plannerType>AiCopilot__ReAct</plannerType>
+    <ruleExpressions>
+        <conditions>
+            <leftOperand>isVerified</leftOperand>
+            <leftOperandType>Variable</leftOperandType>
+            <operator>equal</operator>
+            <rightOperandValue>true</rightOperandValue>
+        </conditions>
+        <expression>Verified_User</expression>
+        <expressionLabel>Verified User</expressionLabel>
+        <expressionName>Verified_User</expressionName>
+        <expressionType>sel</expressionType>
+    </ruleExpressions>
+</GenAiPlannerBundle>

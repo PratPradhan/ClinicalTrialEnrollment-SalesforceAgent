@@ -1,0 +1,9 @@
+<template>
+    <lightning-button label="Get Info" onclick={handleClick}> </lightning-button>
+
+    <template for:each={data} for:item="item" >
+        
+            <div key={item.descriptiom}> {item.description} -- {item.score}</div>
+       
+    </template>
+</template>

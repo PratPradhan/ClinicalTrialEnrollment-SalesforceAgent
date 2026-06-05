@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>GwUk76erFTMGekftxdPaPBk7Pzz68QQYeavhbBH9K5Y=_1</activeVersionIdentifier>
+    <developerName>Clinical_Trial_Activities</developerName>
+    <masterLabel>Clinical Trial Activities</masterLabel>
+    <overridable>false</overridable>
+    <templateVersions>
+        <content>###
+INSTRUCTION
+
+Step 1: Analyze the Query
+Carefully read and understand the user&apos;s question OR request from the question section of the input.
+
+Step 2: Follow These Steps to Prepare the Final Response
+a. You will get a Clinical Trial Name in the query. Get the Clinical Trial Name and Pass that to the knowledge to get the list of activities.
+b.The Primary task here is to find the List of Activities and send it back to the Response for example for a clinical Trial name &quot;NeuroPulse Parkinson&apos;s Study&quot; below are the activities that need to be returned in the response:
+• Create Task: Gait Analysis Appointment (Due in 7 days)
+• Send Slack Message: &quot;NeuroPulse participant onboarded. Begin neurostim patch setup.&quot;
+• Create Task: Patch Calibration &amp; Usage Training (Due in 3 days)
+
+The Response should contain only these list of activities and no additional details.
+
+c.Identify the article-chunk(s) most relevant to the query
+Extract the Source Id of the matched article
+Generate a concise response based on the content.
+
+d. Final Touches
+make sure the language is clear, professional and polite.
+Language: English only
+Output only the List of activities for a clinical Trial in the given format.
+
+###
+KNOWLEDGE
+{!$EinsteinSearch:File_ADL_Clinical_Study_1Cx_mAPeed5c6e6.results}
+
+###
+QUESTIONS:
+{!$Input:Query}
+
+###
+RESPONSE
+ 
+</content>
+        <fileDroppingStrategy>{&quot;dropFilesBy&quot;:&quot;LAST_MODIFIED_DATE&quot;,&quot;dropFileStartingWith&quot;:&quot;OLDEST&quot;}</fileDroppingStrategy>
+        <inputs>
+            <apiName>Query</apiName>
+            <definition>primitive://String</definition>
+            <referenceName>Input:Query</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>RetrieverIdOrName</apiName>
+            <definition>primitive://String</definition>
+            <referenceName>Input:RetrieverIdOrName</referenceName>
+            <required>true</required>
+        </inputs>
+        <isCitationEnabled>false</isCitationEnabled>
+        <primaryModel>sfdc_ai__DefaultGPT5Mini</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getEinsteinRetrieverResults/File_ADL_Clinical_Study_1Cx_mAPeed5c6e6</definition>
+            <description>File_ADL_Clinical_Study</description>
+            <label>File_ADL_Clinical_Study</label>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>searchText</parameterName>
+                <valueExpression>{!$Input:Query}</valueExpression>
+            </parameters>
+            <referenceName>EinsteinSearch:File_ADL_Clinical_Study_1Cx_mAPeed5c6e6</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>GwUk76erFTMGekftxdPaPBk7Pzz68QQYeavhbBH9K5Y=_1</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__knowledgeAnswers</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

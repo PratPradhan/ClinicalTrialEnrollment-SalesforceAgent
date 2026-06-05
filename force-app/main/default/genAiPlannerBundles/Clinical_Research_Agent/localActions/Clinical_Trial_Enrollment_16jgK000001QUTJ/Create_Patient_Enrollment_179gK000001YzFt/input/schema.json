@@ -1,0 +1,21 @@
+{
+  "required" : [ "ClinicalTrialName", "PatientId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "ClinicalTrialName" : {
+      "title" : "ClinicalTrialName",
+      "description" : "the name of clinical trial which user wants to enroll",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "PatientId" : {
+      "title" : "PatientId",
+      "description" : "The PatientId passed by Agent",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

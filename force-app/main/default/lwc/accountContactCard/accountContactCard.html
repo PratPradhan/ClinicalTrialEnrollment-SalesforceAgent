@@ -1,0 +1,79 @@
+<template>
+    <lightning-card title="Contact Details" icon-name="standard:contact">
+
+        <!--Loading State-->
+        <template if:true={isLoading}>
+            <lightning-card>
+                <div class="spinner-wrap">
+                    <lightning-spinner alternative-text="Loading.." size="small">
+
+                    </lightning-spinner>
+
+                </div>
+            </lightning-card>
+        </template>
+
+        <!--Error State-->
+        <template if:true={hasError}>
+            <lightning-card>
+                <div class="error-wrap" >
+                    <lightning-icon icon-name="utility:error" variant="error" size="small">
+
+                    </lightning-icon>
+                    <p class="error-msg">{errorMessage}</p>
+                </div>
+            </lightning-card>
+
+        </template>
+
+        <!--Data Ready-->
+        <template if:true={hasData}>
+            <lightning-card>
+
+                <!--custom header-->
+                <div slot="title" class="class-header">
+                    <div class="avatar">{initials}</div>
+                    <div class="header-text">
+                        <p class="contact-name">{displayName}</p>
+                        <p class="contact-subtitle">{subtitle}</p>
+                    </div>
+                </div>
+
+                <!--action button-->
+                <div slot="actions">
+                    <lightning-button-icon icon-name="utility: new_window"
+                        variant="border-filled"
+                        alternative-text="Open Record"
+                        onclick={navigateToRecord}>
+                    </lightning-button-icon>
+                </div>
+
+                <div class="field-list">
+                    <div class="field-row">
+                        <span class="field-label">Email</span>
+                        <!-- inline mailto — impossible in record-form -->
+                        <a href="mailto:{email}" class="field-link">{email}</a>
+                    </div>
+                    <div class="field-row">
+                        <span class="field-label">Phone</span>
+                        <lightning-formatted-phone value={phone}>
+                        </lightning-formatted-phone>
+                    </div>
+                    <div class="field-row">
+                        <span class="field-label">Account</span>
+                        <!-- value from Contact.Account.Name -->
+                        <span class="field-value field-bold">{accountName}</span>
+                    </div>
+
+                    <template if:true={department}>
+                        <div class="field-row">
+                            <span class="field-label">Department</span>
+                            <span class="field-value">{department}</span>
+                        </div>
+                    </template>
+                </div>
+            </lightning-card>
+        </template>
+
+    </lightning-card>
+</template>

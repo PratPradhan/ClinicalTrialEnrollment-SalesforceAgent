@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>GwUk76erFTMGekftxdPaPBk7Pzz68QQYeavhbBH9K5Y=_3</activeVersionIdentifier>
+    <developerName>Recommended_Clinical_Trial</developerName>
+    <masterLabel>Recommended Clinical Trial</masterLabel>
+    <overridable>false</overridable>
+    <templateVersions>
+        <content>###
+INSTRUCTIONS
+
+Step 1: Analyze the Query
+Carefully read and understand the user&apos;s question or request from the QUESTION section in the input.
+
+Step 2: Follow These Steps to Prepare the Final Response
+a. Identify Patient Filters
+ From the input query, extract the following fields:
+Patient Age
+Patient City
+Gender
+Medical Conditions and
+Medicines
+Use these fields to evaluate relevant clinical trials.
+
+b From the knowledge , get the Clinical Trials and their Eligibility Criteria details
+Each Clinical trial contains the following eligibility fields:
+Minimum Age
+Maximum Age
+Gender
+Eligible Cities
+Required Medical Conditions
+Required Medicine
+
+c.Select Eligible Trials
+ Include a clinical trial if at least 2 out of 5 criteria match.
+Track which criteria were matched and which were not for each trial.
+Make sure the Response contains all the Possible studies where at least 2 conditions are matching, so once you find a Study, check more studies where 2 or more Criteria are matching
+Make sure to add Criteria that satisfy in the Criteria Matched and which don&apos;t satisfy in Criteria Not Matched
+
+d. Evaluate Matching Criteria
+ For each clinical trial, compare the trial’s eligibility criteria with the patient data.
+Note: If one condition, such as City, is not satisfied, then check the next condition. Don&apos;t skip the Trial until all 5 criteria are evaluated. 
+Use the following logic:
+
+1. Patient City should be present in Eligible Cities (This is a comma-separated value, so it should contain the Patient City )  
+2. Gender should match one of the values in the trial&apos;s Gender field(This is a comma-separated value, so it should contain the Gender I;e if Male or Female is present then this criteria is a Match)
+3. Medical Conditions: Trial&apos;s Required Medical Conditions contains the Medical Conditions. For example, if the medical Condition for Trials is High-Risk Adults – Asthma or DM, and the Patient has Asthma, then it should be included 
+4. Medicines: Trials Required Medicine contains the Medicines  
+5.Patient Age: Check if Patient Age is &gt;= Minimum Age and &lt;= Maximum Age 
+
+e. Prepare The Final Response
+ Send a List back as Response mentioning Trial Name, Description , Which Criteria Matched and Which Did not
+
+f Final Touches
+Make sure the response is clear, professional, and polite.
+Language: English only.
+Output only the final LIST structure as described above (step e).
+
+ ###
+KNOWLEDGE:
+{!$EinsteinSearch:File_ADL_All_Clinical_Tr_1Cx_mAPf78577f7.results}
+
+###
+QUESTION:
+{!$Input:Query}
+
+###
+Response:
+
+
+
+
+</content>
+        <fileDroppingStrategy>{&quot;dropFilesBy&quot;:&quot;LAST_MODIFIED_DATE&quot;,&quot;dropFileStartingWith&quot;:&quot;OLDEST&quot;}</fileDroppingStrategy>
+        <inputs>
+            <apiName>Query</apiName>
+            <definition>primitive://String</definition>
+            <referenceName>Input:Query</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>RetrieverIdOrName</apiName>
+            <definition>primitive://String</definition>
+            <referenceName>Input:RetrieverIdOrName</referenceName>
+            <required>true</required>
+        </inputs>
+        <isCitationEnabled>false</isCitationEnabled>
+        <primaryModel>sfdc_ai__DefaultGPT5Mini</primaryModel>
+        <status>Draft</status>
+        <templateDataProviders>
+            <definition>invocable://getEinsteinRetrieverResults/File_ADL_All_Clinical_Tr_1Cx_mAPf78577f7</definition>
+            <description>File_ADL_All_Clinical_Tr</description>
+            <label>File_ADL_All_Clinical_Tr</label>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>searchText</parameterName>
+                <valueExpression>{!$Input:RetrieverIdOrName}</valueExpression>
+            </parameters>
+            <referenceName>EinsteinSearch:File_ADL_All_Clinical_Tr_1Cx_mAPf78577f7</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>GwUk76erFTMGekftxdPaPBk7Pzz68QQYeavhbBH9K5Y=_1</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>###
+INSTRUCTIONS
+
+Step 1: Analyze the Query
+Carefully read and understand the user&apos;s question or request from the QUESTION section in the input.
+
+Step 2: Follow These Steps to Prepare the Final Response
+a. Identify Patient Filters
+ From the input query, extract the following fields:
+Patient Age
+Patient City
+Gender
+Medical Conditions and
+Medicines
+Use these fields to evaluate relevant clinical trials.
+
+b From the knowledge , get the Clinical Trials and their Eligibility Criteria details
+Each Clinical trial contains the following eligibility fields:
+Minimum Age
+Maximum Age
+Gender
+Eligible Cities
+Required Medical Conditions
+Required Medicine
+
+c.Select Eligible Trials
+ Include a clinical trial if at least 2 out of 5 criteria match.
+Track which criteria were matched and which were not for each trial.
+Make sure the Response contains all the Possible studies where at least 2 conditions are matching, so once you find a Study, check more studies where 2 or more Criteria are matching
+Make sure to add Criteria that satisfy in the Criteria Matched and which don&apos;t satisfy in Criteria Not Matched
+
+d. Evaluate Matching Criteria
+ For each clinical trial, compare the trial’s eligibility criteria with the patient data.
+Note: If one condition, such as City, is not satisfied, then check the next condition. Don&apos;t skip the Trial until all 5 criteria are evaluated. 
+Use the following logic:
+
+1. Patient City should be present in Eligible Cities (This is a comma-separated value, so it should contain the Patient City )  
+2. Gender should match one of the values in the trial&apos;s Gender field(This is a comma-separated value, so it should contain the Gender I;e if Male or Female is present then this criteria is a Match)
+3. Medical Conditions: Trial&apos;s Required Medical Conditions contains the Medical Conditions. For example, if the medical Condition for Trials is High-Risk Adults – Asthma or DM, and the Patient has Asthma, then it should be included 
+4. Medicines: Trials Required Medicine contains the Medicines  
+5.Patient Age: Check if Patient Age is &gt;= Minimum Age and &lt;= Maximum Age 
+
+e. Prepare The Final Response
+ Send a List back as Response mentioning Trial Name, Description , Which Criteria Matched and Which Did not
+
+f Final Touches
+Make sure the response is clear, professional, and polite.
+Language: English only.
+Output only the final LIST structure as described above (step e).
+
+ ###
+KNOWLEDGE:
+{!$EinsteinSearch:File_ADL_All_Clinical_Tr_1Cx_mAPf78577f7.results}
+
+###
+QUESTION:
+{!$Input:Query}
+
+###
+Response:
+
+
+
+
+</content>
+        <fileDroppingStrategy>{&quot;dropFilesBy&quot;:&quot;LAST_MODIFIED_DATE&quot;,&quot;dropFileStartingWith&quot;:&quot;OLDEST&quot;}</fileDroppingStrategy>
+        <inputs>
+            <apiName>Query</apiName>
+            <definition>primitive://String</definition>
+            <referenceName>Input:Query</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>RetrieverIdOrName</apiName>
+            <definition>primitive://String</definition>
+            <referenceName>Input:RetrieverIdOrName</referenceName>
+            <required>true</required>
+        </inputs>
+        <isCitationEnabled>false</isCitationEnabled>
+        <primaryModel>sfdc_ai__DefaultGPT41</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getEinsteinRetrieverResults/File_ADL_All_Clinical_Tr_1Cx_mAPf78577f7</definition>
+            <description>File_ADL_All_Clinical_Tr</description>
+            <label>File_ADL_All_Clinical_Tr</label>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>searchText</parameterName>
+                <valueExpression>{!$Input:RetrieverIdOrName}</valueExpression>
+            </parameters>
+            <referenceName>EinsteinSearch:File_ADL_All_Clinical_Tr_1Cx_mAPf78577f7</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>GwUk76erFTMGekftxdPaPBk7Pzz68QQYeavhbBH9K5Y=_2</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>###
+INSTRUCTIONS
+
+Step 1: Analyze the Query
+Carefully read and understand the user&apos;s question or request from the QUESTION section in the input.
+
+Step 2: Follow These Steps to Prepare the Final Response
+a. Identify Patient Filters
+ From the input query, extract the following fields:
+Patient Age
+Patient City
+Gender
+Medical Conditions and
+Medicines
+Use these fields to evaluate relevant clinical trials.
+
+b From the knowledge , get the Clinical Trials and their Eligibility Criteria details
+Each Clinical trial contains the following eligibility fields:
+Minimum Age
+Maximum Age
+Gender
+Eligible Cities
+Required Medical Conditions
+Required Medicine
+
+c.Select Eligible Trials
+ Include a clinical trial if at least 2 out of 5 criteria match.
+Track which criteria were matched and which were not for each trial.
+Make sure the Response contains all the Possible studies where at least 2 conditions are matching, so once you find a Study, check more studies where 2 or more Criteria are matching
+Make sure to add Criteria that satisfy in the Criteria Matched and which don&apos;t satisfy in Criteria Not Matched
+
+d. Evaluate Matching Criteria
+ For each clinical trial, compare the trial’s eligibility criteria with the patient data.
+Note: If one condition, such as City, is not satisfied, then check the next condition. Don&apos;t skip the Trial until all 5 criteria are evaluated. 
+Use the following logic:
+
+1. Patient City should be present in Eligible Cities (This is a comma-separated value, so it should contain the Patient City )  
+2. Gender should match one of the values in the trial&apos;s Gender field(This is a comma-separated value, so it should contain the Gender I;e if Male or Female is present then this criteria is a Match)
+3. Medical Conditions: Trial&apos;s Required Medical Conditions contains the Medical Conditions. For example, if the medical Condition for Trials is High-Risk Adults – Asthma or DM, and the Patient has Asthma, then it should be included 
+4. Medicines: Trials Required Medicine contains the Medicines  
+5.Patient Age: Check if Patient Age is &gt;= Minimum Age and &lt;= Maximum Age 
+
+e. Prepare The Final Response
+ Send a List back as Response mentioning Trial Name, Description and Which Criteria Matched and Which Did not
+
+f Final Touches
+Make sure the response is clear, professional, and polite.
+Language: English only.
+Output only the final LIST structure as described above (step e).
+
+ ###
+KNOWLEDGE:
+{!$EinsteinSearch:File_ADL_All_Clinical_Tr_1Cx_mAPf78577f7.results}
+
+###
+QUESTION:
+{!$Input:Query}
+
+###
+Response:
+
+
+
+
+</content>
+        <fileDroppingStrategy>{&quot;dropFilesBy&quot;:&quot;LAST_MODIFIED_DATE&quot;,&quot;dropFileStartingWith&quot;:&quot;OLDEST&quot;}</fileDroppingStrategy>
+        <inputs>
+            <apiName>RetrieverIdOrName</apiName>
+            <definition>primitive://String</definition>
+            <referenceName>Input:RetrieverIdOrName</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Query</apiName>
+            <definition>primitive://String</definition>
+            <referenceName>Input:Query</referenceName>
+            <required>true</required>
+        </inputs>
+        <isCitationEnabled>false</isCitationEnabled>
+        <primaryModel>sfdc_ai__DefaultGPT41</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getEinsteinRetrieverResults/File_ADL_All_Clinical_Tr_1Cx_mAPf78577f7</definition>
+            <description>File_ADL_All_Clinical_Tr</description>
+            <label>File_ADL_All_Clinical_Tr</label>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>searchText</parameterName>
+                <valueExpression>{!$Input:RetrieverIdOrName}</valueExpression>
+            </parameters>
+            <referenceName>EinsteinSearch:File_ADL_All_Clinical_Tr_1Cx_mAPf78577f7</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>GwUk76erFTMGekftxdPaPBk7Pzz68QQYeavhbBH9K5Y=_3</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__knowledgeAnswers</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

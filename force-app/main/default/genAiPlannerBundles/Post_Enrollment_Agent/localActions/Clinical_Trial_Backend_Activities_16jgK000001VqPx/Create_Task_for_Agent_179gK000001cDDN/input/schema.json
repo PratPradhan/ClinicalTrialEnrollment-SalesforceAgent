@@ -1,0 +1,28 @@
+{
+  "required" : [ "DueDate", "ParticipantId", "Subject" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "DueDate" : {
+      "title" : "DueDate",
+      "description" : "Due Date for the task as given by agent from the list of activities",
+      "lightning:type" : "lightning__dateType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "ParticipantId" : {
+      "title" : "ParticipantId",
+      "description" : "The Participant or Patient Id as sent by Agent",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Subject" : {
+      "title" : "Subject",
+      "description" : "Task subject as sent from the list of activities",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

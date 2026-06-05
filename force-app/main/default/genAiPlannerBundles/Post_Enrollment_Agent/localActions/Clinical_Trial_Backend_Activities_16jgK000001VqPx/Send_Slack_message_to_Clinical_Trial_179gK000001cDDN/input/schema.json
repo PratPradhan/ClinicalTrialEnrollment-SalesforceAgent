@@ -1,0 +1,21 @@
+{
+  "required" : [ "message", "patientId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "message" : {
+      "title" : "message",
+      "description" : "The message to be sent as Given in the Activity.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "patientId" : {
+      "title" : "patientId",
+      "description" : "ParticipantId or patientId extracted from the user Query.",
+      "lightning:type" : "lightning__recordIdType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

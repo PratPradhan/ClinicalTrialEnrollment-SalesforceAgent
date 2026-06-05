@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Set_The_Response</name>
+        <label>Set The Response</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <assignmentItems>
+            <assignToReference>Response</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>queryFormula</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>AI Generated flow for a auto launched flow with name Clinical Trial Query....</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>query to be sent in the response</description>
+        <name>queryFormula</name>
+        <dataType>String</dataType>
+        <expression>&quot;Find Clinical Trials meeting below Criteria: \n&quot;
++
+&quot;Patient Age:&quot; +TEXT({!getPatient.Patient_Age__c} ) + &quot;\n&quot;
++
+&quot;Patient Gender:&quot;+ TEXT({!getPatient.Gender__c} ) + &quot;\n&quot;
++
+&quot;Patient City:&quot;+  {!getPatient.Patient_City__c} + &quot;\n&quot;
++
+&quot;Medical Conditions:&quot;+ {!getPatient.Medical_Condition__c}  + &quot;\n&quot;
++
+&quot;Medicines:&quot;+ {!getPatient.Medicines__c}  + &quot;\n&quot;</expression>
+    </formulas>
+    <interviewLabel>AI Generated Flow for a auto launched flow with name Clinical Trial Query....</interviewLabel>
+    <label>Clinical Trial Query Response</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>GptId</name>
+        <value>
+            <stringValue>0204833f-a356-409f-a575-3717a35a6543</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>GptLlmIds</name>
+        <value>
+            <stringValue>[&quot;0a2773a9-c019-4bdf-b35a-9fe14ec0ae02&quot;,&quot;6d823c38-c930-4cc3-b50b-982393821890&quot;,&quot;90ca3e50-7c4f-45f7-8582-4a451788a547&quot;,&quot;fceda0d1-ac0b-499c-924b-907d5fcd3fcc&quot;,&quot;b2ed65fb-04b7-48b7-ae32-e4b5f2bbb5fd&quot;,&quot;b398c039-e6ce-47c3-97d6-5df6bf0c679d&quot;]</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>getPatient</name>
+        <label>getPatient</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Set_The_Response</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>personAccountId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>getPatient</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Person Account Id sent by Agent</description>
+        <name>personAccountId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Final Query prepared in the flow</description>
+        <name>Response</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

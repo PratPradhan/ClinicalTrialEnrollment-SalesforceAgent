@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>ClinicalTrialEnrollmentController</members>
+        <members>clinicalTrialSlackHandler</members>
+        <members>slackIntegration</members>
+        <members>ClinicalTrialEnrollmentController</members>
+        <members>ClinicalTrialEnrollmentController</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>ApexTrigger</name>
+    </types>
+    <types>
+        <members>clinicalEnrollmentDashboard</members>
+        <members>communityEvent</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>Flow</name>
+    </types>
+     <!-- The agent itself -->
+    <types>
+        <members>Clinical_Research_Agent</members>
+        <members>Post_Enrollment_Agent</members>
+        <name>Bot</name>
+    </types>
+
+    <!-- The published version — name is usually Bot.v1 or Bot.v2 -->
+    <types>
+        <members>Clinical_Research_Agent.v1</members>
+        <members>Post_Enrollment_Agent.v1</members>
+        <name>BotVersion</name>
+    </types>
+
+    <!-- ─── AGENTFORCE BRAIN (API v64+) ───────────────────────── -->
+    <!-- Use GenAiPlannerBundle if your org is Spring '25 or later  -->
+    <!-- Use GenAiPlanner instead if API version is 60-63           -->
+
+    <types>
+        <members>Clinical_Research_Agent</members>
+        <members>Post_Enrollment_Agent</members>
+        <name>GenAiPlannerBundle</name>
+    </types> 
+
+    <!-- ─── TOPICS (one entry per topic) ──────────────────────── -->
+
+    <types>
+        <members>Clinical_Trial_Enrollment_16jgK000001QUTJ</members>
+        <members>Clinical_Trials_Assistance_16jgK000001QUTJ</members>
+        <members>GeneralFAQ_16jgK000001QUTJ</members>
+        <members>Clinical_Trial_Backend_Activities_16jgK000001VqPx</members>
+        <name>GenAiPlugin</name>
+    </types>
+
+    <!-- ─── ACTIONS (one entry per action) ───────────────────── -->
+
+    <types>
+        <members>Clinical_Trial_Activities_179gK000001cDDN</members>
+        <members>Create_Task_for_Agent_179gK000001cDDN</members>
+        <members>Send_Slack_message_to_Clinical_Trial_179gK000001cDDN</members>
+        <members>AnswerQuestionsWithKnowledge_179gK000001bduf</members>
+        <members>Create_Patient_Enrollment_179gK000001YzFt</members>
+        <members>Recommended_Clinical_Trial_179gK000001W9PN</members>
+        <members>Clinical_Trial_Query_Response_179gK000001W9PN</members>
+        <name>GenAiFunction</name>
+    </types>
+
+    <!-- ─── PROMPT TEMPLATES ──────────────────────────────────── -->
+
+    <types>
+        <members>Recommended_Clinical_Trial</members>
+        <members>Clinical_Trial_Activities</members>
+        <name>GenAiPromptTemplate</name>
+    </types>
+    <types>
+        <members>Account.Patient_Age__c</members>
+        <members>Account.Patient_City__c</members>
+        <members>Account.Medicines__c</members>
+        <members>Account.Medical_Condition__c</members>
+        <members>Account.Gender__c</members>
+        <name>CustomField</name>
+    </types>
+     <types>
+        <members>Clinical_Trial__c</members>
+        <members>Trial_Enrollment__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Agent_Config</members>
+        <name>QueueRoutingConfig</name>
+    </types>
+    <types>
+        <members>ClinicalTrial</members>
+        <name>EmbeddedServiceConfig</name>
+    </types>
+    <types>
+        <members>Clinical_Messaging_Channel</members>
+        <name>MessagingChannel</name>
+    </types>
+    <version>66.0</version>
+</Package>

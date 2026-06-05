@@ -1,0 +1,109 @@
+<template>
+    <article class="dashboard">
+        <template lwc:if={isLoading}>
+            <div class="dashboard-loading">
+                <lightning-spinner alternative-text="Loading enrollment data" size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+        <template lwc:elseif={error}>
+            <div class="slds-p-around_medium">
+                <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+                    <span class="slds-assistive-text">error</span>
+                    <h2>Unable to load enrollment dashboard</h2>
+                    <p>Please refresh or contact your study coordinator.</p>
+                </div>
+            </div>
+        </template>
+
+        <template lwc:elseif={hasSummary}>
+            <header class="dashboard-header">
+                <div class="header-content">
+                    <p class="header-eyebrow">Clinical Research Enrollment</p>
+                    <h1 class="header-title">{summary.studyName}</h1>
+                    <div class="header-meta">
+                        <span class="meta-chip">Protocol {summary.studyProtocol}</span>
+                        <span class="meta-chip">{summary.studyPhase}</span>
+                        <span class={studyStatusClass}>{summary.studyStatus}</span>
+                    </div>
+                </div>
+                <div class="header-sites">
+                    <span class="sites-value">{summary.sitesActive}</span>
+                    <span class="sites-label">Active Sites</span>
+                </div>
+            </header>
+
+            <section class="metrics-grid" aria-label="Enrollment metrics">
+                <div class="metric-card metric-primary">
+                    <div class="metric-icon-wrap">
+                        <lightning-icon icon-name="utility:groups" size="small" alternative-text="Enrolled patients"></lightning-icon>
+                    </div>
+                    <p class="metric-label">Patients Enrolled</p>
+                    <p class="metric-value">{summary.totalEnrolled}</p>
+                    <p class="metric-sub">of {summary.enrollmentTarget} target</p>
+                    <div class="progress-track" role="progressbar" aria-valuenow={summary.enrollmentPercent} aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-fill" style={progressStyle}></div>
+                    </div>
+                    <p class="metric-foot">{summary.enrollmentPercentLabel} of enrollment goal</p>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon-wrap">
+                        <lightning-icon icon-name="utility:filter" size="small" alternative-text="Screening"></lightning-icon>
+                    </div>
+                    <p class="metric-label">In Screening</p>
+                    <p class="metric-value">{summary.screening}</p>
+                    <p class="metric-sub">Eligibility review in progress</p>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon-wrap">
+                        <lightning-icon icon-name="utility:edit_form" size="small" alternative-text="Pending consent"></lightning-icon>
+                    </div>
+                    <p class="metric-label">Pending Consent</p>
+                    <p class="metric-value">{summary.pendingConsent}</p>
+                    <p class="metric-sub">Awaiting informed consent</p>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon-wrap">
+                        <lightning-icon icon-name="utility:date_input" size="small" alternative-text="Completed visits"></lightning-icon>
+                    </div>
+                    <p class="metric-label">Completed Visits</p>
+                    <p class="metric-value">{summary.completedVisits}</p>
+                    <p class="metric-sub">Across all enrolled participants</p>
+                </div>
+            </section>
+
+            <section class="services-section" aria-label="Enrollment services">
+                <div class="section-heading">
+                    <h2>Enrollment Services</h2>
+                    <p>Operational support provided throughout the patient journey from screening through study completion.</p>
+                </div>
+
+                <template lwc:if={hasServices}>
+                    <ul class="services-list">
+                        <template for:each={services} for:item="service">
+                            <li key={service.key} class="service-card">
+                                <div class="service-icon">
+                                    <lightning-icon icon-name={service.iconName} size="small" alternative-text={service.name}></lightning-icon>
+                                </div>
+                                <div class="service-body">
+                                    <div class="service-title-row">
+                                        <h3>{service.name}</h3>
+                                        <span class={service.statusClass}>{service.status}</span>
+                                    </div>
+                                    <p class="service-description">{service.description}</p>
+                                    <p class="service-stat">
+                                        <span class="service-stat-value">{service.patientsServed}</span>
+                                        patients served
+                                    </p>
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                </template>
+            </section>
+        </template>
+    </article>
+</template>
