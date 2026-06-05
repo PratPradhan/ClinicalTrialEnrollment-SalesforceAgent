@@ -201,13 +201,38 @@ Agent explains the enrollment process and next steps.
 
 ## Project Outcome
 
-This project demonstrates how Salesforce Agentforce can be used to build enterprise-grade AI solutions for healthcare and clinical research by combining AI agents, Data Cloud, RAG, Prompt Builder, Apex, and Flow automation.
+This project demonstrates how Salesforce Agentforce can be used to build enterprise-grade AI solutions for healthcare and clinical research by combining AI agents, Data Cloud, RAG, Prompt Builder, Apex, and Flow automation, Slack Integration.
 
-## Getting Started
+Screenshot from the Implementation:
+<img width="1025" height="613" alt="Screenshot 2026-06-05 at 11 12 35 AM" src="https://github.com/user-attachments/assets/d943b468-acd3-410d-b995-a4b23ce26f38" />
+<img width="1597" height="832" alt="Screenshot 2026-06-05 at 11 13 03 AM" src="https://github.com/user-attachments/assets/3ac33529-ea6e-4551-9625-b762580e038f" />
+<img width="410" height="534" alt="Screenshot 2026-06-05 at 11 13 22 AM" src="https://github.com/user-attachments/assets/23eb261b-f666-4ec4-b26d-aa5a92b4bb13" />
+<img width="302" height="440" alt="Screenshot 2026-06-05 at 11 18 56 AM" src="https://github.com/user-attachments/assets/0f21ceb8-74ac-4b42-ab29-25d5e183c8ef" />
+<img width="392" height="556" alt="Screenshot 2026-06-05 at 11 20 35 AM" src="https://github.com/user-attachments/assets/a65a1753-f794-4d59-823e-3da79d41a13e" />
+<img width="390" height="509" alt="Screenshot 2026-06-05 at 11 20 50 AM" src="https://github.com/user-attachments/assets/ac51e8fe-04b9-4498-98e5-c25f892dfa61" />
+<img width="384" height="510" alt="Screenshot 2026-06-05 at 11 21 10 AM" src="https://github.com/user-attachments/assets/17e96389-2dce-49fa-9cf7-10936151dbdd" />
+<img width="402" height="540" alt="Screenshot 2026-06-05 at 11 21 23 AM" src="https://github.com/user-attachments/assets/1b260f7b-e0fa-49fe-ad19-91cf6d940e1b" />
+<img width="1486" height="291" alt="Screenshot 2026-06-05 at 11 21 55 AM" src="https://github.com/user-attachments/assets/9af984d7-f6e3-4dfe-a74f-890c934de42d" />
+<img width="1214" height="479" alt="Screenshot 2026-06-05 at 11 22 03 AM" src="https://github.com/user-attachments/assets/40bd53e0-86d4-46bd-8b89-74349d63ffbc" />
+<img width="1073" height="367" alt="Screenshot 2026-06-05 at 11 22 11 AM" src="https://github.com/user-attachments/assets/bdb4fd0f-2ffc-4a02-9885-e358f939d7e2" />
+<img width="1438" height="786" alt="Screenshot 2026-06-05 at 11 42 36 AM" src="https://github.com/user-attachments/assets/f8602590-725d-4c44-a219-b79a6e2a1c4d" />
 
-This is a Salesforce DX project. Useful resources:
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
