@@ -25,7 +25,7 @@ public with sharing class googleAPIController {
         Http http =new Http();
         HttpRequest req = new HttpRequest();
         req.setMethod('POST');
-        req.setEndpoint('https://vision.googleapis.com/v1/images:annotate?key=AIzaSyDigWm_rK4025fWp_6EN4lUbiE_wmLhu9A');
+        req.setEndpoint('https://vision.googleapis.com/v1/images:annotate?key=');
         req.setHeader('Content-Type', 'application/json');
         req.setBody(reqBody);
         HttpResponse res = http.send(req);
